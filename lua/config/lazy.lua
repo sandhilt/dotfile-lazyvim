@@ -6,14 +6,29 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(vim.env.LAZY or lazypath)
 
+if vim.fn.executable("npm") == 1 then
+  if vim.fn.executable("volta") == 1 then
+    vim.g.node_host_prog = vim.fn.trim(vim.fn.system("volta which neovim-node-host"))
+  end
+end
+
+vim.g.loaded_perl_provider = 0
+vim.g.loaded_ruby_provider = 0
+
 require("lazy").setup({
   spec = {
     -- add LazyVim and import its plugins
-    { "LazyVim/LazyVim", import = "lazyvim.plugins" },
+    { "LazyVim/LazyVim", import = "lazyvim.plugins", opts = {} },
+    { "neovim/nvim-lspconfig", opts = {
+      inlay_hints = { enabled = true },
+    } },
     -- import any extras modules here
-    -- { import = "lazyvim.plugins.extras.lang.typescript" },
-    -- { import = "lazyvim.plugins.extras.lang.json" },
-    -- { import = "lazyvim.plugins.extras.ui.mini-animate" },
+    { import = "lazyvim.plugins.extras.lang.typescript" },
+    { import = "lazyvim.plugins.extras.lang.json" },
+    { import = "lazyvim.plugins.extras.lang.rust" },
+    { import = "lazyvim.plugins.extras.ui.mini-animate" },
+    { "nvim-treesitter/nvim-treesitter", build = ":TSUpdate" },
+    { "Mofiqul/vscode.nvim" },
     -- import/override with your plugins
     { import = "plugins" },
   },
@@ -26,7 +41,7 @@ require("lazy").setup({
     version = false, -- always use the latest git commit
     -- version = "*", -- try installing the latest stable version for plugins that support semver
   },
-  install = { colorscheme = { "tokyonight", "habamax" } },
+  install = { colorscheme = {} },
   checker = { enabled = true }, -- automatically check for plugin updates
   performance = {
     rtp = {
@@ -38,7 +53,7 @@ require("lazy").setup({
         -- "netrwPlugin",
         "tarPlugin",
         "tohtml",
-        "tutor",
+        -- "tutor",
         "zipPlugin",
       },
     },
