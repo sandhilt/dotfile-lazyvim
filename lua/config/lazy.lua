@@ -28,7 +28,7 @@ require("lazy").setup({
     { import = "lazyvim.plugins.extras.lang.rust" },
     { import = "lazyvim.plugins.extras.ui.mini-animate" },
     { "nvim-treesitter/nvim-treesitter", build = ":TSUpdate" },
-    { "Mofiqul/vscode.nvim" },
+    { "gmr458/vscode_modern_theme.nvim" },
     -- import/override with your plugins
     { import = "plugins" },
   },
