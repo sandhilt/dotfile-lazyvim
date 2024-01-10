@@ -12,9 +12,6 @@ if vim.fn.executable("npm") == 1 then
   end
 end
 
-vim.g.loaded_perl_provider = 0
-vim.g.loaded_ruby_provider = 0
-
 require("lazy").setup({
   spec = {
     -- add LazyVim and import its plugins
@@ -28,7 +25,6 @@ require("lazy").setup({
     { import = "lazyvim.plugins.extras.lang.rust" },
     { import = "lazyvim.plugins.extras.ui.mini-animate" },
     { "nvim-treesitter/nvim-treesitter", build = ":TSUpdate" },
-    { "gmr458/vscode_modern_theme.nvim" },
     -- import/override with your plugins
     { import = "plugins" },
   },
