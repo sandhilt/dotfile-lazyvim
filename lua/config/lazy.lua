@@ -17,15 +17,12 @@ require("lazy").setup({
     -- add LazyVim and import its plugins
     { "LazyVim/LazyVim", import = "lazyvim.plugins", opts = {} },
     -- import any extras modules here
-    { import = "lazyvim.plugins.extras.lang.typescript" },
     { import = "lazyvim.plugins.extras.util.project" },
+    { import = "lazyvim.plugins.extras.lang.typescript" },
     { import = "lazyvim.plugins.extras.lang.json" },
     { import = "lazyvim.plugins.extras.lang.rust" },
     { import = "lazyvim.plugins.extras.ui.mini-animate" },
     { "nvim-treesitter/nvim-treesitter", build = ":TSUpdate" },
-    {
-      "simrat39/inlay-hints.nvim",
-    },
     -- import/override with your plugins
     { import = "plugins" },
   },
