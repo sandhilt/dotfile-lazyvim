@@ -6,10 +6,8 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(vim.env.LAZY or lazypath)
 
-if vim.fn.executable("npm") == 1 then
-  if vim.fn.executable("volta") == 1 then
-    vim.g.node_host_prog = vim.fn.trim(vim.fn.system("volta which neovim-node-host"))
-  end
+if vim.fn.executable("volta") == 1 then
+  vim.g.node_host_prog = vim.fn.trim(vim.fn.system("volta which neovim-node-host"))
 end
 
 require("lazy").setup({
