@@ -32,8 +32,20 @@ return {
             },
           },
         },
+        rust_analyzer = {
+          settings = {
+            ["rust-analyzer"] = {
+              inlayHints = {
+                typeHints = true,
+                parameterHints = true,
+                chainingHints = true,
+                maxLength = 120,
+              },
+            },
+          },
+        },
       },
     },
   },
-  { "lvimuser/lsp-inlayhints.nvim" },
+  -- { "lvimuser/lsp-inlayhints.nvim" },
 }
