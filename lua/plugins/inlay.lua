@@ -5,14 +5,17 @@ return {
       servers = {
         ---@type lspconfig.options.tsserver
         tsserver = {
+          on_attach = function(client, bufnr)
+            vim.lsp.inlay_hint.enable(0, true)
+          end,
           settings = {
             typescript = {
               inlayHints = {
-                includeInlayParameterNameHints = "all",
-                includeInlayParameterNameHintsWhenArgumentMatchesName = false,
-                includeInlayFunctionParameterTypeHints = true,
+                includeInlayParameterNameHints = "all", -- 'none' | 'literals' | 'all'
+                includeInlayParameterNameHintsWhenArgumentMatchesName = true,
                 includeInlayVariableTypeHints = true,
-                includeInlayVariableTypeHintsWhenTypeMatchesName = false,
+                includeInlayFunctionParameterTypeHints = true,
+                includeInlayVariableTypeHintsWhenTypeMatchesName = true,
                 includeInlayPropertyDeclarationTypeHints = true,
                 includeInlayFunctionLikeReturnTypeHints = true,
                 includeInlayEnumMemberValueHints = true,
@@ -20,11 +23,12 @@ return {
             },
             javascript = {
               inlayHints = {
-                includeInlayParameterNameHints = "all",
-                includeInlayParameterNameHintsWhenArgumentMatchesName = false,
-                includeInlayFunctionParameterTypeHints = true,
+                includeInlayParameterNameHints = "all", -- 'none' | 'literals' | 'all'
+                includeInlayParameterNameHintsWhenArgumentMatchesName = true,
                 includeInlayVariableTypeHints = true,
-                includeInlayVariableTypeHintsWhenTypeMatchesName = false,
+
+                includeInlayFunctionParameterTypeHints = true,
+                includeInlayVariableTypeHintsWhenTypeMatchesName = true,
                 includeInlayPropertyDeclarationTypeHints = true,
                 includeInlayFunctionLikeReturnTypeHints = true,
                 includeInlayEnumMemberValueHints = true,
@@ -32,16 +36,13 @@ return {
             },
           },
         },
+        ---@type lspconfig.options.rust_analyzer
         rust_analyzer = {
+          on_attach = function(client, bufnr)
+            vim.lsp.inlay_hint.enable(bufnr, true)
+          end,
           settings = {
-            ["rust-analyzer"] = {
-              inlayHints = {
-                typeHints = true,
-                parameterHints = true,
-                chainingHints = true,
-                maxLength = 120,
-              },
-            },
+            -- ["rust-analyzer"] = {},
           },
         },
       },
